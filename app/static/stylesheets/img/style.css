@@ -1,0 +1,111 @@
+/*РАСПОЛОЖЕНИЕ*/
+body{
+    position: relative; 
+    width:900px;
+    margin: 0 40px;
+    padding:20px;
+           
+  }
+  #title{
+    margin-bottom:0px;
+    height:80px;
+  }
+  #content {
+    margin:10px 350px 10px 0;
+   }
+  h2 {
+    margin:0;height:40px;
+    line-height:40px;
+    padding-left:10px;
+  }
+  #sections {
+    position:absolute;
+    top:140px; right:0; 
+    width:250px;
+    padding-right:70px;
+  }
+  ul {
+    list-style: none;
+     margin:20px 0; padding:0;
+  }
+  li {
+    margin: 10px 0; padding: 0;
+  }
+  #search {
+    position:absolute;
+    top:170px;
+    right:0;
+    width:280px;
+    margin-right:20px;
+    padding:10px;
+  }
+  #contacts{
+    position:absolute;
+    top:450px;
+    right:0; width:300px;
+    margin-right:20px;
+  }
+  #meta{
+    padding-top:10px;
+    margin:0
+  }
+  /*ШРИФТ И ЦВЕТА*/
+  html{
+    background-color:#88d5ef;
+  }
+  body{
+    font:2ex/20px Tamoha, Arial;
+    background-color:white;
+    color:#095966;
+  }
+  #title {
+    background: url(img/логотип.png) #9ad4e3 no-repeat;
+  }
+  h1{
+    font:250% Tamoha, Arial;
+  }
+  h2 {
+    background:#f2f5f7 repeat-x;
+  }
+  h1, h2{
+    color:rgb(17, 20, 124);
+  }
+  #content, #search, #contacts {
+    border-style: solid;
+    border-width:thin;
+    border-color:#2f5a60;
+  }
+  a {
+    color:#1d0839;
+    text-decoration: none;
+    font:140% Tamoha, Arial;
+  }
+  a:hover {
+    color:hwb(180 88% 8%);
+  }
+  #search {
+    font-weight:normal;
+  }
+  #meta{
+    font:90% Tamoha, Arial;
+    color:#7373ba;
+  }
+  #meta a{
+    text-decoration:none;
+    color:#060a06;
+  }
+  #meta{
+    background:url(z.png) right bottom no-repeat;
+    height:500px;
+  }
+  /*РАЗНОЕ*/
+  .text{
+    padding:10px 10px;
+  }
+  h1{
+    padding-left:90px;
+    margin:0;height:80px;
+    line-height:80px;
+  }
+      
+  
