@@ -10,6 +10,7 @@
         <th scope="col">Доктор</th>
         <th scope="col">Дата</th>
         <th scope="col">Время</th>
+        <th scope="col">Действия</th>
     </tr>
     </thead>
     <tbody>
@@ -22,6 +23,11 @@
         <td>{{ appointment.doctor }}</td>
         <td>{{ appointment.date }}</td>
         <td>{{ appointment.time }}</td>
+        <td>
+            <div class="d-flex justify-content-center">
+                <i class="bi bi-trash text-danger" style="cursor: pointer" onclick="delete_appointment({{ appointment.id }})"></i>
+            </div>
+        </td>
     </tr>
     </tbody>
     {% endfor %}

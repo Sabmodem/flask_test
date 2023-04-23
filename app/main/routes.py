@@ -6,6 +6,11 @@ from app.main import bp
 from app.main.forms import AppointmentForm
 from app.main.models import Appointment
 
+import json
+
+def jsonify(obj):
+    return json.dumps(obj, ensure_ascii=False, indent=2)
+
 
 @bp.route('/', methods=['POST', 'GET'])
 @bp.route('/index', methods=['POST', 'GET'])
@@ -38,5 +43,11 @@ def appointment():
 
 @bp.route('/admin', methods=['POST', 'GET'])
 def admin():
-    appointments = Appointment.query.all()
+    appointments = Appointment.query.order_by(Appointment.date).all()
     return render_template('main/admin.html', appointments=appointments)
+
+@bp.route('/appointment/<aid>', methods=['DELETE'])
+def delete_appointment(aid):
+    Appointment.query.where(Appointment.id == aid).delete()
+    db.session.commit()
+    return jsonify({'status': 'ok'})
