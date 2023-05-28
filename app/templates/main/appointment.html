@@ -9,5 +9,39 @@
         </div>
     </div>
 </div>
+<script>
+    const busy_time = async(date) => {
+        const options = { method: 'GET' };
+        try {
+            const busy_time_date = await fetch(`/appointment/date/${date}`, options);
+            return await busy_time_date.json();
+        } catch(err) {
+            alert('Ошибка');
+        }  
+    }
+
+    const watch_date = async (e) => {
+        const bt = await busy_time(e.target.value);
+        const time_field = document.getElementById('time');
+        time_field.value = '';
+        for(const opt of time_field) {
+            if(bt.includes(opt.value)) {
+                opt.disabled = true;
+            } else {
+                opt.disabled = false;
+            }
+        }
+    };
+
+    const on_load = (e) => {
+        const time_field = document.getElementById('time');
+        time_field.value = '';
+        const date_field = document.getElementById('date');
+        date_field.addEventListener('change', watch_date);
+    };
+
+    window.addEventListener("load", on_load);
+
+</script>
 
 {% endblock %}

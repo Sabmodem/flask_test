@@ -1,16 +1,11 @@
 import datetime
-
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, jsonify
 from app.extensions import db
 from app.main import bp
 from app.main.forms import AppointmentForm
 from app.main.models import Appointment
-
 import json
-
-def jsonify(obj):
-    return json.dumps(obj, ensure_ascii=False, indent=2)
-
+from datetime import datetime
 
 @bp.route('/', methods=['POST', 'GET'])
 @bp.route('/index', methods=['POST', 'GET'])
@@ -51,3 +46,9 @@ def delete_appointment(aid):
     Appointment.query.where(Appointment.id == aid).delete()
     db.session.commit()
     return jsonify({'status': 'ok'})
+
+@bp.route('/appointment/date/<string:date>', methods=['GET'])
+def date(date):
+    appointments = Appointment.query.where(Appointment.date == date).all()
+    times = [i.time.strftime('%H:%M')  for i in appointments]
+    return jsonify(times)

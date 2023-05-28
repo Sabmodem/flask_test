@@ -1,5 +1,19 @@
 from app.extensions import db
+import json
 
+class ModelsEncoder(json.JSONEncoder):
+  def default(self, obj):
+    if isinstance(obj, Appointment):
+      return {
+          'id': obj.id, 
+          'name': obj.name, 
+          'direction': obj.direction, 
+          'doctor': obj.doctor, 
+          'date': obj.date, 
+          'time': obj.time, 
+          'phone': obj.phone 
+          }
+    return json.JSONEncoder.default(self, obj)
 
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
