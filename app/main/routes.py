@@ -6,12 +6,12 @@ from app.main.forms import AppointmentForm
 from app.main.models import Appointment
 import json
 from datetime import datetime
+import traceback
 
 @bp.route('/', methods=['POST', 'GET'])
 @bp.route('/index', methods=['POST', 'GET'])
 def index():
     return render_template('main/index.html')
-
 
 @bp.route('/appointment', methods=['POST', 'GET'])
 def appointment():
@@ -24,14 +24,22 @@ def appointment():
                 direction=form.direction.data,
                 doctor=form.doctor.data,
                 date=form.date.data,
-                time=datetime.time(hour=int(form.time.data[:2]))
+                time=datetime.time(datetime.strptime(form.time.data, '%H:%M'))
+                # time=datetime.time(hour=int(form.time.data[:2]))
+                # time=datetime.time(form.time.data)
             )
             db.session.add(new_appointment)
-            print(form.date.data)
+
+            # print(form.time.data)
+            # print(int(form.time.data[:2])) 
+            # print(datetime.time(hour=int(form.time.data[:2])))
+
             db.session.commit()
+
             flash('Вы успешно записались на прием', 'success')
             return redirect(url_for('main.appointment'))
     except Exception as e:
+        traceback.print_exc()
         flash(str(e), 'danger')
     return render_template('main/appointment.html', form=form)
 

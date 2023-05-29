@@ -23,7 +23,7 @@
     const watch_date = async (e) => {
         const bt = await busy_time(e.target.value);
         const time_field = document.getElementById('time');
-        time_field.value = '';
+        // time_field.value = '';
         for(const opt of time_field) {
             if(bt.includes(opt.value)) {
                 opt.disabled = true;
